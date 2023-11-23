@@ -6,8 +6,8 @@ import { useNavigation } from '@react-navigation/native'
 export default function BackButton() {
     const navigation = useNavigation();
   return (
-    <TouchableOpacity onPress={()=> navigation.goBack()} className="bg-white rounded-full h-8 w-8">
-      <ChevronLeftIcon size="30" color={colors.button} />
+    <TouchableOpacity onPress={()=> navigation.goBack()} className="bg-white rounded-full h-auto w-auto justify-center items-center">
+      <ChevronLeftIcon size="40" color={colors.button} />
     </TouchableOpacity>
   )
 }

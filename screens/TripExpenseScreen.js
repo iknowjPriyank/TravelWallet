@@ -57,7 +57,7 @@ export default function TripExpensesScreen({route}) {
             <TouchableOpacity
               onPress={() => navigation.navigate('Expense',  {id, place, country})}
               className="p-2 px-3 bg-white border border-gray-200 rounded-full">
-              <Text className={colors.heading}>Add Expense</Text>
+              <Text className={`{colors.heading} text-lg font-semibold`}>Add Expense</Text>
             </TouchableOpacity>
           </View>
           <View style={{ height: 430 }}>
@@ -71,11 +71,11 @@ export default function TripExpensesScreen({route}) {
                 return (
                   <View style={{ backgroundColor: categoryBG[item.category] }} className="flex-row justify-between items-center p-3 px-5 mb-3 rounded-2xl">
                     <View>
-                      <Text className={`${colors.heading} font-bold`}>{item.title}</Text>
-                      <Text className={`${colors.heading} text-xs`}>{item.category}</Text>
+                      <Text className={`${colors.heading} text-lg font-bold`}>{item.title}</Text>
+                      <Text className={`${colors.heading} text-base`}>{item.category}</Text>
                     </View>
                     <View>
-                      <Text>Rs.{item.amount}</Text>
+                      <Text className="text-lg text-neutral-700">Rs.{item.amount}</Text>
                     </View>
                   </View>
                 )

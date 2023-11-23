@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, TouchableOpacity, Image, FlatList } from 'react-native';
+import { View, Text, TouchableOpacity, Image, FlatList, TouchableWithoutFeedback } from 'react-native';
 import { colors } from '../theme';
 import { useIsFocused, useNavigation } from '@react-navigation/native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import randomImage from '../assets/images/randomImage';
 import EmptyList from '../components/emptyList';
+import { XMarkIcon } from 'react-native-heroicons/outline';
 
 const HomeScreen = () => {
   const isFocused = useIsFocused();
@@ -35,11 +36,37 @@ const HomeScreen = () => {
     loadTrips();
   }, [isFocused]);
 
+  const handleDelete = async (id) => {
+    try {
+      const storeData = async (key, value) => {
+        try {
+          const jsonValue = JSON.stringify(value);
+          await AsyncStorage.setItem(key, jsonValue);
+        } catch (error) {
+          console.error('Error storing data:', error);
+        }
+      };
+
+      // Remove the trip with the specified id
+      const updatedTrips = trips.filter((trip) => trip.id !== id);
+
+      // Update AsyncStorage with the new trips data
+      await storeData('trips', updatedTrips);
+
+      // Update the state to re-render the component
+      setTrips(updatedTrips);
+    } catch (error) {
+      console.error('Error deleting trip:', error);
+    }
+  };
+
+
+
   return (
     <SafeAreaView className="flex-1">
       <View className="flex-row justify-center items-center p-4">
         <Text className={`${colors.heading} font-bold text-3xl shadow-sm`} style={{ alignSelf: 'center' }}>
-          Travel Diary
+          Travel Wallet
         </Text>
       </View>
       <View className="flex-row justify-center items-center bg-blue-200 rounded-xl mx-4 mb-4">
@@ -67,16 +94,23 @@ const HomeScreen = () => {
             }}
             renderItem={({ item, index }) => {
               return (
-                <TouchableOpacity 
-                key={index}
-                className="bg-white p-3 rounded-2xl mb-3 shadow-sm"
-                onPress={() => navigation.navigate('Trip', {id : item.id, place : item.place, country : item.country})}
+                <TouchableOpacity
+                  key={index}
+                  className="bg-white p-3 rounded-2xl mb-3 shadow-sm relative"
+                  onPress={() => navigation.navigate('Trip', { id: item.id, place: item.place, country: item.country })}
                 >
+                  <TouchableWithoutFeedback onPress={() => handleDelete(item.id)} >
+                    <View className="items-center bg-slate-600 flex h-10 w-10 rounded-full justify-center absolute z-50 mt-2 mr-2" style={{top : 0, right : 0,}}>
+                      <XMarkIcon size={25} color={'white'} strokeWidth={3} />
+                    </View>
+                  </TouchableWithoutFeedback>
+
                   <View>
-                    <Image source={randomImage()} className="w-36 h-36 mb-2" />
-                    <Text className={`${colors.heading} font-bold`}>{item.place}</Text>
-                    <Text className={`${colors.heading} text-xs`}>{item.country}</Text>
+                    <Image source={randomImage()} className="w-36 h-40 mb-2" />
+                    <Text className={`${colors.heading} text-base font-bold`}>{item.place}</Text>
+                    <Text className={`${colors.heading} text-lg`}>{item.country}</Text>
                   </View>
+
                 </TouchableOpacity>
               );
             }}
