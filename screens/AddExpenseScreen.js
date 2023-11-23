@@ -52,7 +52,6 @@ export default function AddTripScreen({ route }) {
                                 },
                             ];
 
-                        // Update the Expenses array for the current trip
                         return { ...trip, Expenses: updatedExpenses };
                     }
                     return trip;
@@ -102,9 +101,9 @@ export default function AddTripScreen({ route }) {
                                 <Image className="h-60 w-60" source={require('../assets/images/expenseBanner.png')} />
                             </View>
                             <View className="space-y-2 mx-2">
-                                <Text className={`${colors.heading} text-lg font-bold`}>For What?</Text>
+                                <Text className={`${colors.heading} text-lg font-bold`}>Reason ?</Text>
                                 <TextInput value={title} onChangeText={value => setTitle(value)} className="p-4 bg-white rounded-full mb-3" />
-                                <Text className={`${colors.heading} text-lg font-bold`}>How Much?</Text>
+                                <Text className={`${colors.heading} text-lg font-bold`}>How Much did you spend?</Text>
                                 <TextInput value={amount} onChangeText={value => setAmount(value)}  keyboardType="numeric" className="p-4 bg-white rounded-full mb-3" />
                             </View>
                             <View className="mx-2 space-x-2">

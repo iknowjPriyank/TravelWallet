@@ -7,6 +7,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import randomImage from '../assets/images/randomImage';
 import EmptyList from '../components/emptyList';
 import { XMarkIcon } from 'react-native-heroicons/outline';
+import Snackbar from 'react-native-snackbar';
 
 const HomeScreen = () => {
   const isFocused = useIsFocused();
@@ -38,28 +39,41 @@ const HomeScreen = () => {
 
   const handleDelete = async (id) => {
     try {
-      const storeData = async (key, value) => {
-        try {
-          const jsonValue = JSON.stringify(value);
-          await AsyncStorage.setItem(key, jsonValue);
-        } catch (error) {
-          console.error('Error storing data:', error);
-        }
-      };
-
       // Remove the trip with the specified id
       const updatedTrips = trips.filter((trip) => trip.id !== id);
-
-      // Update AsyncStorage with the new trips data
-      await storeData('trips', updatedTrips);
-
-      // Update the state to re-render the component
-      setTrips(updatedTrips);
+  
+      // Show Snackbar confirmation message
+      Snackbar.show({
+        text: 'Are you sure you want to delete this item?',
+        duration: Snackbar.LENGTH_LONG,
+        position: Snackbar.POSITION_MIDDLE,
+        action: {
+          text: 'DELETE',
+          textColor: 'red',
+          onPress: async () => {
+            try {
+              // Perform the actual deletion based on updatedTrips
+              await AsyncStorage.setItem('trips', JSON.stringify(updatedTrips));
+  
+              setTrips(updatedTrips);
+  
+              // Show success message
+              Snackbar.show({
+                text: 'Item deleted successfully!',
+                duration: Snackbar.LENGTH_SHORT,
+                textColor: 'yellow',
+              });
+            } catch (error) {
+              console.error('Error updating trips:', error);
+            }
+          },
+        },
+      });
     } catch (error) {
       console.error('Error deleting trip:', error);
     }
   };
-
+  
 
 
   return (
@@ -106,7 +120,7 @@ const HomeScreen = () => {
                   </TouchableWithoutFeedback>
 
                   <View>
-                    <Image source={randomImage()} className="w-36 h-40 mb-2" />
+                    <Image source={randomImage()} className="w-36 h-40 mb-2 mt-2" />
                     <Text className={`${colors.heading} text-base font-bold`}>{item.place}</Text>
                     <Text className={`${colors.heading} text-lg`}>{item.country}</Text>
                   </View>

@@ -76,10 +76,10 @@ export default function AddTripScreen() {
                 <Image className="h-72 w-72" source={require('../assets/images/4.png')} />
               </View>
               <View className="space-y-2 mx-2">
-                <Text className={`${colors.heading} text-lg font-bold`}>Where On Earth?</Text>
-                <TextInput value={place} onChangeText={value => setPlace(value)} className="p-4 bg-white rounded-full mb-3" />
-                <Text className={`${colors.heading} text-lg font-bold`}>In which State</Text>
-                <TextInput value={country} onChangeText={value => setCountry(value)} className="p-4 bg-white rounded-full mb-3" />
+                <Text className={`${colors.heading} text-lg font-bold`}>Where On The Earth?</Text>
+                <TextInput value={place} onChangeText={value => setPlace(value)} className="p-4 bg-white rounded-full mb-3 text-xl" />
+                <Text className={`${colors.heading} text-lg font-bold`}>In which State or Country ?</Text>
+                <TextInput value={country} onChangeText={value => setCountry(value)} className="p-4 bg-white rounded-full mb-3 text-xl" />
               </View>
             </View>
 
