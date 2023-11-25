@@ -15,6 +15,9 @@ export default function TripExpensesScreen({ route }) {
   const isFocused = useIsFocused();
   const [expenses, setExpenses] = useState([]);
 
+  // Total Amount
+  const [totalAmount, setTotalAmount] = useState(0);
+
   useEffect(() => {
     const fetchExpenses = async () => {
       try {
@@ -27,6 +30,10 @@ export default function TripExpensesScreen({ route }) {
 
         // Set the expenses for the current trip in state
         setExpenses(currentTrip?.Expenses || []);
+
+        // Calculating the total amount and update the state
+        const calculatedTotalAmount = (currentTrip?.Expenses || []).reduce((sum, expense) => sum + expense.amount, 0);
+        setTotalAmount(calculatedTotalAmount);
       } catch (error) {
         console.error('Error fetching expenses:', error);
       }
@@ -50,6 +57,10 @@ export default function TripExpensesScreen({ route }) {
       // Update the expenses for the current trip
       currentTrip.Expenses = updatedExpenses;
 
+      // Updating the total amount after deleting the expense
+      const calculatedTotalAmount = updatedExpenses.reduce((sum, expense) => sum + expense.amount, 0);
+      setTotalAmount(calculatedTotalAmount);
+
       // Updating the trips data in AsyncStorage
       await AsyncStorage.setItem('trips', JSON.stringify(parsedTrips));
 
@@ -59,7 +70,7 @@ export default function TripExpensesScreen({ route }) {
       console.error('Error deleting expense:', error);
     }
   };
-  
+
 
   return (
     <SafeAreaView className="flex-1">
@@ -94,14 +105,15 @@ export default function TripExpensesScreen({ route }) {
               showsVerticalScrollIndicator={false}
               className="mx-1"
               renderItem={({ item }) => {
+
                 return (
                   <TouchableOpacity
                     style={{ backgroundColor: categoryBG[item.category] }}
                     className="flex-row justify-between items-center p-3 px-5 mb-3 rounded-2xl" >
                     <View>
                       <Text className={`${colors.heading} text-lg font-bold`}>{item.title}</Text>
-                      <Text className={`${colors.heading} text-base`}>{item.category}</Text>
                       <Text className="text-lg text-neutral-700">Rs.{item.amount}</Text>
+                      <Text className={`${colors.heading} text-base font-semibold`}>spend on {item.category}</Text>
                     </View>
                     <View>
                       <TouchableWithoutFeedback onPress={() => handleDelete(item.id)} >
@@ -116,6 +128,14 @@ export default function TripExpensesScreen({ route }) {
                 )
               }}
             />
+            {
+              totalAmount != 0 ? (
+                <View className="bg-white h-10 items-start justify-center p-2" >
+                  <Text className="text-xl font-bold text-neutral-600">Total Amount: {totalAmount}</Text>
+                </View>
+              ) : (<View />)
+            }
+
           </View>
         </View>
       </View>

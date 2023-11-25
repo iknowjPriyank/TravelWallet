@@ -13,18 +13,18 @@ export const categories = [
     },
     {
         title: 'Medicine',
-        value: 'Medicine'
+        value: 'medicine'
     },
     {
         title: 'Travel',
-        value: 'Travel',
+        value: 'travel',
     },
     {
         title: 'Groceries',
-        value: 'Groceries',
+        value: 'groceries',
     },
     {
         title: 'Others',
-        value: 'Others',
+        value: 'others',
     },
 ];

@@ -102,7 +102,7 @@ export default function AddTripScreen({ route }) {
                             </View>
                             <View className="space-y-2 mx-2">
                                 <Text className={`${colors.heading} text-lg font-bold`}>Reason ?</Text>
-                                <TextInput value={title} onChangeText={value => setTitle(value)} className="p-4 bg-white rounded-full mb-3" />
+                                <TextInput value={title} onChangeText={value => setTitle(value)} className="p-4 bg-white rounded-full mb-3 text-xl" />
                                 <Text className={`${colors.heading} text-lg font-bold`}>How Much did you spend?</Text>
                                 <TextInput value={amount} onChangeText={value => setAmount(value)}  keyboardType="numeric" className="p-4 bg-white rounded-full mb-3" />
                             </View>

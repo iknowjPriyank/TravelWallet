@@ -4,8 +4,10 @@ export const colors = {
 }
 export const categoryBG = {
     food: '#E1D3EE',
-    commute: '#B0E3D3',
+    medicine: '#B0E3D3',
     shopping: '#EcFAD7',
     entertainment: '#ffdfdd',
-    other: '#CAD309'
+    groceries : '#CBC3E3',
+    travel : '#FFE7C7',
+    others : '#CF9FFF'
 }
