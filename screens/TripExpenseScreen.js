@@ -130,10 +130,10 @@ export default function TripExpensesScreen({ route }) {
             />
             {
               totalAmount != 0 ? (
-                <View className="bg-white h-10 items-start justify-center p-2" >
-                  <Text className="text-xl font-bold text-neutral-600">Total Amount: {totalAmount}</Text>
+                <View className="bg-blue-500 h-14 items-start justify-center mb-6 mt-2 rounded-xl" >
+                  <Text className="text-xl font-bold text-neutral-200 pl-3">Total Amount: {totalAmount} </Text>
                 </View>
-              ) : (<View />)
+              ) : (<View className="mt-2 mb-2" />)
             }
 
           </View>

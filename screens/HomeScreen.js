@@ -80,7 +80,7 @@ const HomeScreen = () => {
     <SafeAreaView className="flex-1">
       <View className="flex-row justify-center items-center p-4">
         <Text className={`${colors.heading} font-bold text-3xl shadow-sm`} style={{ alignSelf: 'center' }}>
-          Travel Wallet
+          Travel Expense
         </Text>
       </View>
       <View className="flex-row justify-center items-center bg-blue-200 rounded-xl mx-4 mb-4">
