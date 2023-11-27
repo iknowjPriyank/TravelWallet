@@ -24,7 +24,7 @@ const WelcomeScreen = () => {
     }, [])
     const { width, height } = Dimensions.get('window')
     return (
-        <View style={styles.container}>
+        <View className="flex-1 justify-center items-center">
             <View className="bg-neutral-100 flex-1">
                 <Image source={require('../assets/images/welcome-24.png')}
                     style={{ width: width, height: height * 0.7, alignSelf: 'center' }}
@@ -42,21 +42,3 @@ const WelcomeScreen = () => {
 }
 
 export default WelcomeScreen
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    modalBackground: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        //   backgroundColor: 'rgba(0, 0, 0, 0.5)',
-    },
-    modalContainer: {
-        padding: 20,
-        borderRadius: 10,
-    },
-});
