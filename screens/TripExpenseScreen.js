@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity, Image, FlatList, TouchableWithoutFeedback, } from 'react-native'
+import { View, Text, TouchableOpacity, Image, FlatList, TouchableWithoutFeedback, Dimensions, } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { colors, categoryBG } from '../theme'
 import EmptyList from '../components/emptyList';
@@ -6,8 +6,10 @@ import { useIsFocused, useNavigation } from '@react-navigation/native';
 import BackButton from '../components/backButton';
 import { SafeAreaView } from 'react-native-safe-area-context'
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { TrashIcon } from 'react-native-heroicons/outline';
+import { CalendarIcon, ClockIcon, CurrencyRupeeIcon, InboxStackIcon, TrashIcon } from 'react-native-heroicons/outline';
 
+
+const {height, width} = Dimensions.get('window')
 
 export default function TripExpensesScreen({ route }) {
   const { id, place, country } = route.params;
@@ -97,7 +99,7 @@ export default function TripExpensesScreen({ route }) {
               <Text className={`{colors.heading} text-lg font-semibold`}>Add Expense</Text>
             </TouchableOpacity>
           </View>
-          <View style={{ height: 430 }}>
+          <View style={{ height: 420 }}>
             <FlatList
               data={expenses}
               ListEmptyComponent={<EmptyList message={"You haven't recorded any expenses yet"} />}
@@ -108,17 +110,33 @@ export default function TripExpensesScreen({ route }) {
 
                 return (
                   <TouchableOpacity
-                    style={{ backgroundColor: categoryBG[item.category] }}
-                    className="flex-row justify-between items-center p-3 px-5 mb-3 rounded-2xl" >
+                    style={{ backgroundColor: categoryBG[item.category], }}
+                    className="flex-row justify-between items-center p-3 px-5 mb-3 rounded-2xl"
+                    >
+
                     <View>
-                      <Text className={`${colors.heading} text-lg font-bold`}>{item.title}</Text>
-                      <Text className="text-lg text-neutral-700">Rs.{item.amount}</Text>
-                      <Text className={`${colors.heading} text-base font-semibold`}>spend on {item.category}</Text>
+                      <View className="flex-row">
+                        <View className="flex-row items-center">
+                          <CalendarIcon size={20} color="black" strokeWidth={2} />
+                          <Text className="text-base font-semibold text-neutral-600 ml-1">{item.date}</Text>
+                        </View>
+                        <View className="flex-row items-center ml-3">
+                          <ClockIcon size={20} color="black" strokeWidth={2} />
+                          <Text className="text-base font-semibold text-neutral-600 ml-1">{item.time}</Text>
+                        </View>
+                      </View>
+                      <View>
+                        <View className="flex-row">
+                          <Text className={`${colors.heading} text-lg font-bold`}>{item.title}</Text>
+                        </View>
+                        <Text className="text-lg text-semibold text-neutral-800">Amount: {item.amount}</Text>
+                        <Text className={`${colors.heading} text-base font-semibold`}>Category: {item.category}</Text>
+                      </View>
                     </View>
                     <View>
-                      <TouchableWithoutFeedback onPress={() => handleDelete(item.id)} >
-                        <View className="items-center bg-slate-400 flex h-10 w-10 rounded-full justify-center absolute z-50" style={{ top: 0, right: 0, }}>
-                          <TrashIcon size={25} color={'white'} strokeWidth={2} />
+                      <TouchableWithoutFeedback onPress={() => handleDelete(item.id)}>
+                        <View className="items-center bg-slate-400 flex h-10 w-10 rounded-full justify-center absolute z-50" style={{ top: 0, right: 0 }}>
+                          <TrashIcon size={25} color="white" strokeWidth={2} />
                         </View>
                       </TouchableWithoutFeedback>
                     </View>

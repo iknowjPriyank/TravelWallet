@@ -20,6 +20,18 @@ export default function AddTripScreen({ route }) {
 
     const navigation = useNavigation();
 
+    // Fetching Current Data when saving the data
+    const getCurrentDate = () => {
+        const currentDate = new Date();
+        return currentDate.toDateString();
+      };
+ 
+      // current time
+      const getCurrentTime = () => {
+        const currentTime = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+        return currentTime;
+      };
+
     const handleAddExpense = async () => {
         try {
             if (title && amount && category) {
@@ -41,7 +53,8 @@ export default function AddTripScreen({ route }) {
                                     title,
                                     amount: parseFloat(amount),
                                     category,
-                                },
+                                    date : getCurrentDate(),    
+                                    time : getCurrentTime(),                           },
                             ]
                             : [
                                 {
@@ -49,6 +62,8 @@ export default function AddTripScreen({ route }) {
                                     title,
                                     amount: parseFloat(amount),
                                     category,
+                                    date: getCurrentDate(),
+                                    time : getCurrentTime(),    
                                 },
                             ];
 
