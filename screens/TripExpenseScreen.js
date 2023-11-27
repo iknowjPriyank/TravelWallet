@@ -9,7 +9,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { CalendarIcon, ClockIcon, CurrencyRupeeIcon, InboxStackIcon, TrashIcon } from 'react-native-heroicons/outline';
 
 
-const {height, width} = Dimensions.get('window')
+const { height, width } = Dimensions.get('window')
 
 export default function TripExpensesScreen({ route }) {
   const { id, place, country } = route.params;
@@ -112,7 +112,7 @@ export default function TripExpensesScreen({ route }) {
                   <TouchableOpacity
                     style={{ backgroundColor: categoryBG[item.category], }}
                     className="flex-row justify-between items-center p-3 px-5 mb-3 rounded-2xl"
-                    >
+                  >
 
                     <View>
                       <View className="flex-row">
@@ -126,10 +126,11 @@ export default function TripExpensesScreen({ route }) {
                         </View>
                       </View>
                       <View>
-                        <View className="flex-row">
-                          <Text className={`${colors.heading} text-lg font-bold`}>{item.title}</Text>
-                        </View>
-                        <Text className="text-lg text-semibold text-neutral-800">Amount: {item.amount}</Text>
+
+                        <Text className={`text-black text-lg font-bold`}>{item.title}</Text>
+
+                        <Text className="text-lg font-semibold text-gray-600">Amount: {item.amount}</Text>
+                        
                         <Text className={`${colors.heading} text-base font-semibold`}>Category: {item.category}</Text>
                       </View>
                     </View>
