@@ -10,6 +10,7 @@ import { CalendarIcon, ClockIcon, TrashIcon } from 'react-native-heroicons/outli
 import { FlashList } from '@shopify/flash-list';
 
 
+
 export default function TripExpensesScreen({ route }) {
   const { id, place, country } = route.params;
   const navigation = useNavigation();

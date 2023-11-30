@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, TouchableOpacity, Image, FlatList, TouchableWithoutFeedback } from 'react-native';
+import { View, Text, TouchableOpacity, Image, Dimensions, TouchableWithoutFeedback } from 'react-native';
 import { colors } from '../theme';
 import { useIsFocused, useNavigation } from '@react-navigation/native';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -9,6 +9,9 @@ import EmptyList from '../components/emptyList';
 import { XMarkIcon } from 'react-native-heroicons/outline';
 import Snackbar from 'react-native-snackbar';
 import { FlashList } from '@shopify/flash-list';
+
+
+const {width, height} = Dimensions.get('window')
 
 const HomeScreen = () => {
   const isFocused = useIsFocused();
@@ -119,7 +122,7 @@ const HomeScreen = () => {
                   </TouchableWithoutFeedback>
 
                   <View>
-                    <Image source={randomImage()} className="w-36 h-40 mb-2 mt-2" />
+                    <Image source={randomImage()} className="" style={{width : width *0.4, height : height * 0.2, resizeMode : 'contain' }} />
                     <Text className={`${colors.heading} text-base font-bold`}>{item.place}</Text>
                     <Text className={`${colors.heading} text-lg`}>{item.country}</Text>
                   </View>
