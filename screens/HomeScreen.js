@@ -8,6 +8,7 @@ import randomImage from '../assets/images/randomImage';
 import EmptyList from '../components/emptyList';
 import { XMarkIcon } from 'react-native-heroicons/outline';
 import Snackbar from 'react-native-snackbar';
+import { FlashList } from '@shopify/flash-list';
 
 const HomeScreen = () => {
   const isFocused = useIsFocused();
@@ -96,21 +97,19 @@ const HomeScreen = () => {
             <Text className={`${colors.heading} font-semibold text-lg`}>Add Trip</Text>
           </TouchableOpacity>
         </View>
-        <View style={{ height: 430 }}>
-          <FlatList
+        <View style={{ height: 430, }}>
+          <FlashList
             data={trips}
             numColumns={2}
+            estimatedItemSize={2000}
             ListEmptyComponent={<EmptyList message={"You haven't recorded any trips yet"} />}
             keyExtractor={(item) => item.id.toString()}
             showsVerticalScrollIndicator={false}
-            columnWrapperStyle={{
-              justifyContent: 'space-evenly',
-            }}
             renderItem={({ item, index }) => {
               return (
                 <TouchableOpacity
                   key={index}
-                  className="bg-white p-3 rounded-2xl mb-3 shadow-sm relative"
+                  className="bg-white p-3 rounded-2xl mb-3 shadow-sm relative justify-evenly items-center flex-1 m-2"
                   onPress={() => navigation.navigate('Trip', { id: item.id, place: item.place, country: item.country })}
                 >
                   <TouchableWithoutFeedback onPress={() => handleDelete(item.id)} >

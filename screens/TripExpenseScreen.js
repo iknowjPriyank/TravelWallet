@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity, Image, FlatList, TouchableWithoutFeedback, Dimensions, } from 'react-native'
+import { View, Text, TouchableOpacity, Image, TouchableWithoutFeedback, Dimensions, } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { colors, categoryBG } from '../theme'
 import EmptyList from '../components/emptyList';
@@ -6,10 +6,9 @@ import { useIsFocused, useNavigation } from '@react-navigation/native';
 import BackButton from '../components/backButton';
 import { SafeAreaView } from 'react-native-safe-area-context'
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { CalendarIcon, ClockIcon, CurrencyRupeeIcon, InboxStackIcon, TrashIcon } from 'react-native-heroicons/outline';
+import { CalendarIcon, ClockIcon, TrashIcon } from 'react-native-heroicons/outline';
+import { FlashList } from '@shopify/flash-list';
 
-
-const { height, width } = Dimensions.get('window')
 
 export default function TripExpensesScreen({ route }) {
   const { id, place, country } = route.params;
@@ -100,8 +99,9 @@ export default function TripExpensesScreen({ route }) {
             </TouchableOpacity>
           </View>
           <View style={{ height: 420 }}>
-            <FlatList
+            <FlashList
               data={expenses}
+              estimatedItemSize={2000}
               ListEmptyComponent={<EmptyList message={"You haven't recorded any expenses yet"} />}
               keyExtractor={item => item.id}
               showsVerticalScrollIndicator={false}
@@ -149,7 +149,7 @@ export default function TripExpensesScreen({ route }) {
             />
             {
               totalAmount != 0 ? (
-                <View className="bg-blue-500 h-14 items-start justify-center mb-6 mt-2 rounded-xl" >
+                <View className="bg-blue-500 h-14 items-start justify-center mb-4 mt-2 rounded-xl" >
                   <Text className="text-xl font-bold text-neutral-200 pl-3">Total Amount: {totalAmount} </Text>
                 </View>
               ) : (<View className="mt-2 mb-2" />)
