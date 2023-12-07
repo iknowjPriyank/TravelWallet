@@ -108,11 +108,14 @@ const HomeScreen = () => {
             ListEmptyComponent={<EmptyList message={"You haven't recorded any trips yet"} />}
             keyExtractor={(item) => item.id.toString()}
             showsVerticalScrollIndicator={false}
+            contentContainerStyle={{
+              paddingBottom : 20,
+            }}
             renderItem={({ item, index }) => {
               return (
                 <TouchableOpacity
                   key={index}
-                  className="bg-white p-3 rounded-2xl mb-3 shadow-sm relative justify-evenly items-center flex-1 m-2"
+                  className="bg-white p-3 rounded-2xl mb-4 shadow-sm relative justify-evenly items-center flex-1 m-2"
                   onPress={() => navigation.navigate('Trip', { id: item.id, place: item.place, country: item.country })}
                 >
                   <TouchableWithoutFeedback onPress={() => handleDelete(item.id)} >
