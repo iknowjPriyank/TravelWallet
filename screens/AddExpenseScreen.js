@@ -106,20 +106,20 @@ export default function AddTripScreen({ route }) {
                                     <BackButton />
                                 </View>
 
-                                <Text className={`${colors.heading} text-2xl font-bold text-center`}>Add Expense</Text>
+                                <Text className={`text-neutral-600 text-2xl font-bold text-center`}>Add Expense</Text>
                             </View>
                             <View className="flex-row items-center justify-center">
-                                <Text className={`${colors.heading} text-lg font-semibold text-center`}>{place}, {country}</Text>
+                                <Text className={`text-neutral-600 text-lg font-semibold text-center`}>{place}, {country}</Text>
                             </View>
 
                             <View className="flex-row justify-center my-3 mt-5">
                                 <Image className="h-60 w-60" source={require('../assets/images/expenseBanner.png')} />
                             </View>
                             <View className="space-y-2 mx-2">
-                                <Text className={`${colors.heading} text-lg font-bold`}>Reason ?</Text>
-                                <TextInput value={title} onChangeText={value => setTitle(value)} className="p-4 bg-white rounded-full mb-3 text-xl" />
-                                <Text className={`${colors.heading} text-lg font-bold`}>How Much did you spend?</Text>
-                                <TextInput value={amount} onChangeText={value => setAmount(value)}  keyboardType="numeric" className="p-4 bg-white rounded-full mb-3" />
+                                <Text className={`text-neutral-600 text-lg font-bold`}>Reason ?</Text>
+                                <TextInput value={title} onChangeText={value => setTitle(value)} className="p-4 bg-white rounded-full mb-3 text-xl text-black" />
+                                <Text className={`text-neutral-600 text-lg font-bold`}>How Much did you spend?</Text>
+                                <TextInput value={amount} onChangeText={value => setAmount(value)}  keyboardType="numeric" className="p-4 bg-white rounded-full mb-3 text-black" />
                             </View>
                             <View className="mx-2 space-x-2">
                                 <Text className="text-lg font-bold">Category</Text>
@@ -131,7 +131,7 @@ export default function AddTripScreen({ route }) {
                                             return (
                                                 <TouchableOpacity onPress={() => setCategory(cat.value)} key={cat.value}
                                                     className={`rounded-full ${bgColor} px-4 p-3 mb-2 mr-2`}>
-                                                    <Text>{cat.title}</Text>
+                                                    <Text className="text-neutral-700">{cat.title}</Text>
                                                 </TouchableOpacity>
                                             )
                                         })

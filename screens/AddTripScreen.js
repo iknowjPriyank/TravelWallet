@@ -69,17 +69,17 @@ export default function AddTripScreen() {
                   <BackButton />
                 </View>
 
-                <Text className={`${colors.heading} text-xl font-bold text-center`}>Add Trip</Text>
+                <Text className={`text-neutral-600 text-xl font-bold text-center`}>Add Trip</Text>
               </View>
 
               <View className="flex-row justify-center my-3 mt-5">
                 <Image className="h-72 w-72" source={require('../assets/images/4.png')} />
               </View>
               <View className="space-y-2 mx-2">
-                <Text className={`${colors.heading} text-lg font-bold`}>Where On The Earth?</Text>
-                <TextInput value={place} onChangeText={value => setPlace(value)} className="p-4 bg-white rounded-full mb-3 text-xl" />
-                <Text className={`${colors.heading} text-lg font-bold`}>In which State or Country ?</Text>
-                <TextInput value={country} onChangeText={value => setCountry(value)} className="p-4 bg-white rounded-full mb-3 text-xl" />
+                <Text className={`text-neutral-600 text-lg font-bold`}>Where On The Earth?</Text>
+                <TextInput value={place} onChangeText={value => setPlace(value)} className="p-4 bg-white rounded-full mb-3 text-xl text-black" />
+                <Text className={`text-neutral-600 text-lg font-bold`}>In which State or Country ?</Text>
+                <TextInput value={country} onChangeText={value => setCountry(value)} className="p-4 bg-white rounded-full mb-3 text-xl text-black" />
               </View>
             </View>
 

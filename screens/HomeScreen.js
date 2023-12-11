@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, TouchableOpacity, Image, Dimensions, TouchableWithoutFeedback } from 'react-native';
-import { colors } from '../theme';
 import { useIsFocused, useNavigation } from '@react-navigation/native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -83,7 +82,7 @@ const HomeScreen = () => {
   return (
     <SafeAreaView className="flex-1">
       <View className="flex-row justify-center items-center p-4">
-        <Text className={`${colors.heading} font-bold text-3xl shadow-sm`} style={{ alignSelf: 'center' }}>
+        <Text className={`text-neutral-600 font-bold text-3xl shadow-sm`} style={{ alignSelf: 'center' }}>
           Travel Expense
         </Text>
       </View>
@@ -92,12 +91,12 @@ const HomeScreen = () => {
       </View>
       <View className="px-4 space-y-3">
         <View className="flex-row justify-between items-center">
-          <Text className={`${colors.heading} font-bold text-xl`}>Recent Trips</Text>
+          <Text className={`text-neutral-600 font-bold text-xl`}>Recent Trips</Text>
           <TouchableOpacity
             onPress={() => navigation.navigate('AddTrip')}
             className="p-2 px-3 bg-white border border-gray-200 rounded-full"
           >
-            <Text className={`${colors.heading} font-semibold text-lg`}>Add Trip</Text>
+            <Text className={`text-neutral-600 font-semibold text-lg`}>Add Trip</Text>
           </TouchableOpacity>
         </View>
         <View style={{ height: 430, }}>
@@ -126,8 +125,8 @@ const HomeScreen = () => {
 
                   <View>
                     <Image source={randomImage()} className="" style={{width : width *0.4, height : height * 0.2, resizeMode : 'contain' }} />
-                    <Text className={`${colors.heading} text-base font-bold`}>{item.place}</Text>
-                    <Text className={`${colors.heading} text-lg`}>{item.country}</Text>
+                    <Text className={`text-neutral-600 text-base font-bold`}>{item.place}</Text>
+                    <Text className={`text-neutral-600 text-lg`}>{item.country}</Text>
                   </View>
 
                 </TouchableOpacity>

@@ -1,6 +1,6 @@
 import { View, Text, TouchableOpacity, Image, TouchableWithoutFeedback, Dimensions, } from 'react-native'
 import React, { useEffect, useState } from 'react'
-import { colors, categoryBG } from '../theme'
+import {categoryBG } from '../theme'
 import EmptyList from '../components/emptyList';
 import { useIsFocused, useNavigation } from '@react-navigation/native';
 import BackButton from '../components/backButton';
@@ -82,8 +82,8 @@ export default function TripExpensesScreen({ route }) {
             <BackButton />
           </View>
           <View>
-            <Text className={`${colors.heading} text-xl font-bold text-center`}>{place}</Text>
-            <Text className={`${colors.heading} text-xs text-center`}>{country}</Text>
+            <Text className={`text-neutral-600 text-xl font-bold text-center`}>{place}</Text>
+            <Text className={`text-neutral-600 text-xs text-center`}>{country}</Text>
           </View>
 
         </View>
@@ -92,11 +92,11 @@ export default function TripExpensesScreen({ route }) {
         </View>
         <View className=" space-y-3">
           <View className="flex-row justify-between items-center">
-            <Text className={`${colors.heading} font-bold text-xl`}>Expenses</Text>
+            <Text className={` text-neutral-600 font-bold text-xl`}>Expenses</Text>
             <TouchableOpacity
               onPress={() => navigation.navigate('Expense', { id, place, country })}
               className="p-2 px-3 bg-white border border-gray-200 rounded-full">
-              <Text className={`{colors.heading} text-lg font-semibold`}>Add Expense</Text>
+              <Text className={` text-neutral-600 text-lg font-semibold`}>Add Expense</Text>
             </TouchableOpacity>
           </View>
           <View style={{ height: 420 }}>
@@ -132,7 +132,7 @@ export default function TripExpensesScreen({ route }) {
 
                         <Text className="text-lg font-semibold text-gray-600">Amount: {item.amount}</Text>
                         
-                        <Text className={`${colors.heading} text-base font-semibold`}>Category: {item.category}</Text>
+                        <Text className={`text-yellow-700 text-base font-semibold`}>Category: {item.category}</Text>
                       </View>
                     </View>
                     <View>
